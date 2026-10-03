@@ -27,6 +27,13 @@ HEADERS = {
 }
 MAX_PAGES = 8
 
+# Reservebron: de Wikipedia-pagina van het seizoen (ruwe wikitekst).
+WIKI_URL = "https://en.wikipedia.org/w/index.php"
+WIKI_TITLE = "{year}_Premier_League_Darts"
+WIKI_USER_AGENT = "ha-pl-darts/0.2 (https://github.com/Fliha/ha-pl-darts)"
+SOFASCORE_RETRY = timedelta(hours=6)  # na een blokkade even met rust laten
+SCAN_INTERVAL_WIKI_MIN = timedelta(minutes=5)
+
 # Ververs-interval: rustig als er niks gebeurt, snel tijdens een speelavond.
 SCAN_INTERVAL_IDLE = timedelta(hours=1)
 SCAN_INTERVAL_MATCHDAY = timedelta(minutes=10)
@@ -46,8 +53,27 @@ POINTS_SEMI = 2
 LEAGUE_BEST_OF_LEGS = 11  # play-off wedstrijden zijn langer (19/21 legs)
 
 # Officieel schema per seizoen: (avond, datum, stad, zaal, landcode).
-# Avond 17 = play-offs. Bron: PDC, aangekondigd 24 september 2026.
+# Avond 17 = play-offs. Bron: PDC (2027 aangekondigd 24 september 2026).
 SCHEDULES: dict[int, list[tuple[int, str, str, str, str]]] = {
+    2026: [
+        (1, "2026-02-05", "Newcastle", "Utilita Arena", "GB"),
+        (2, "2026-02-12", "Antwerpen", "AFAS Dome", "BE"),
+        (3, "2026-02-19", "Glasgow", "OVO Hydro", "GB"),
+        (4, "2026-02-26", "Belfast", "SSE Arena", "GB"),
+        (5, "2026-03-05", "Cardiff", "Utilita Arena", "GB"),
+        (6, "2026-03-12", "Nottingham", "Motorpoint Arena", "GB"),
+        (7, "2026-03-19", "Dublin", "3Arena", "IE"),
+        (8, "2026-03-26", "Berlijn", "Uber Arena", "DE"),
+        (9, "2026-04-02", "Manchester", "AO Arena", "GB"),
+        (10, "2026-04-09", "Brighton", "Brighton Centre", "GB"),
+        (11, "2026-04-16", "Rotterdam", "Rotterdam Ahoy", "NL"),
+        (12, "2026-04-23", "Liverpool", "M&S Bank Arena", "GB"),
+        (13, "2026-04-30", "Aberdeen", "P&J Live", "GB"),
+        (14, "2026-05-07", "Leeds", "First Direct Arena", "GB"),
+        (15, "2026-05-14", "Birmingham", "Utilita Arena", "GB"),
+        (16, "2026-05-21", "Sheffield", "Utilita Arena", "GB"),
+        (17, "2026-05-28", "Londen", "The O2", "GB"),
+    ],
     2027: [
         (1, "2027-02-04", "Glasgow", "OVO Hydro", "GB"),
         (2, "2027-02-11", "Berlijn", "Uber Arena", "DE"),

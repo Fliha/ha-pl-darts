@@ -24,6 +24,8 @@ def _night_event(night: Night) -> CalendarEvent:
     if night.matches:
         lines = [f"{m.start.astimezone(dt_util.DEFAULT_TIME_ZONE):%H:%M}  {m.round_nl}: {m.title}"
                  for m in night.matches]
+        if any(m.estimated_time for m in night.matches):
+            lines.append("(tijden per partij zijn geschat)")
         description = "\n".join(lines)
     else:
         description = "Wie tegen wie wordt een paar dagen vooraf bekend. Starttijd is een schatting."
@@ -62,8 +64,10 @@ class DartsCalendar(DartsEntity, CalendarEntity):
 
     def _all_events(self) -> list[CalendarEvent]:
         data = self.coordinator.data
-        events = [_night_event(n) for n in data.nights]
-        events += [_match_event(m) for m in data.matches]
+        nights = data.previous_nights + data.nights
+        matches = data.previous_matches + data.matches
+        events = [_night_event(n) for n in nights]
+        events += [_match_event(m) for m in matches]
         return sorted(events, key=lambda e: e.start)
 
     @property

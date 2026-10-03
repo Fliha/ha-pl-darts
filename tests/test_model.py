@@ -92,3 +92,66 @@ def test_matches_attach_to_scheduled_night():
 def test_target_season():
     assert target_season(date(2026, 10, 3)) == 2027
     assert target_season(date(2027, 3, 1)) == 2027
+
+
+# --- Wikipedia als reservebron -------------------------------------------
+from pathlib import Path
+
+from pl_darts.wiki import parse_wikitext
+
+WIKI_2026 = (Path(__file__).parent / "fixtures" / "wikipedia_2026.txt").read_text()
+
+
+def test_wikipedia_full_season_matches_official_table():
+    """Eindstand 2026 volgens Wikipedia: punten en volgorde moeten kloppen."""
+    matches = parse_wikitext(WIKI_2026, 2026)
+    assert len(matches) == 16 * 7 + 3
+    rows = compute_standings(matches)
+    got = [(r["naam"], r["punten"], r["avonden_gewonnen"]) for r in rows]
+    assert got[:7] == [
+        ("Luke Littler", 43, 6),
+        ("Jonny Clayton", 34, 4),
+        ("Luke Humphries", 27, 1),
+        ("Gerwyn Price", 26, 2),
+        ("Stephen Bunting", 18, 2),
+        ("Michael van Gerwen", 18, 1),
+        ("Gian van Veen", 18, 0),
+    ]
+    by_name = {r["naam"]: r for r in rows}
+    # walkovers tellen niet als gespeelde partij (zelfde als Wikipedia)
+    assert by_name["Luke Littler"]["partijen_gespeeld"] == 34
+    assert by_name["Luke Littler"]["partijen_gewonnen"] == 24
+    assert by_name["Michael van Gerwen"]["partijen_gespeeld"] == 25
+    assert by_name["Gian van Veen"]["partijen_gespeeld"] == 27
+    assert by_name["Jonny Clayton"]["legsaldo"] == 15
+
+
+def test_wikipedia_walkover_and_playoffs():
+    matches = parse_wikitext(WIKI_2026, 2026)
+    wo = [m for m in matches if m.walkover]
+    assert {(m.night_number, m.winner) for m in wo} == {
+        (3, "Luke Littler"),
+        (7, "Michael van Gerwen"),
+    }
+    final = [m for m in matches if m.night_number == 17 and m.round_name == "Final"][0]
+    assert (final.home, final.home_score, final.away_score, final.winner) == (
+        "Luke Littler", 11, 10, "Luke Littler"
+    )
+    assert not final.is_league
+
+
+def test_wikipedia_draw_known_but_not_played():
+    text = """===4 February – Night 1===
+| RD1-team1   = {{PDCFlag|Luke Littler|avg=}}
+| RD1-score1  =
+| RD1-team2   = {{PDCFlag|Luke Humphries|avg=}}
+| RD1-score2  =
+| RD2-team1   =
+| RD2-score1  =
+"""
+    matches = parse_wikitext(text, 2027)
+    assert len(matches) == 1
+    m = matches[0]
+    assert m.status == "notstarted" and m.winner is None
+    assert m.estimated_time
+    assert m.start == datetime(2027, 2, 4, 19, 0, tzinfo=timezone.utc)

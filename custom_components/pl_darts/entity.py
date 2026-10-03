@@ -12,7 +12,7 @@ class DartsEntity(CoordinatorEntity[DartsCoordinator]):
     """Basis-entiteit, allemaal onder één apparaat."""
 
     _attr_has_entity_name = True
-    _attr_attribution = "Data: SofaScore (onofficieel) en PDC-schema"
+    _attr_attribution = "Data: SofaScore (onofficieel) of Wikipedia (CC BY-SA), schema van de PDC"
 
     def __init__(self, coordinator: DartsCoordinator, key: str, platform: str) -> None:
         super().__init__(coordinator)

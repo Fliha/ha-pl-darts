@@ -28,6 +28,7 @@ def _next_night_attrs(d: DartsData) -> dict[str, Any]:
     if not n:
         return {}
     return {
+        "bron": d.source,
         "bron_fout": d.source_error,
         "seizoen": n.season,
         "avond": n.title,
@@ -66,6 +67,7 @@ def _leader_value(d: DartsData) -> str | None:
 
 def _standings_attrs(d: DartsData) -> dict[str, Any]:
     return {
+        "bron": d.source,
         "bron_fout": d.source_error,
         "seizoen": d.standings_season,
         "voorlopig": d.standings_season == d.season,

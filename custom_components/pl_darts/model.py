@@ -76,6 +76,8 @@ class Match:
     night_number: int | None
     winner: str | None = None
     night: Night | None = None
+    estimated_time: bool = False
+    walkover: bool = False
 
     @property
     def round_nl(self) -> str:
@@ -93,6 +95,8 @@ class Match:
 
     @property
     def title(self) -> str:
+        if self.walkover:
+            return f"{self.home} – {self.away} (walkover, {self.winner} door)"
         if self.status in ("finished", "inprogress") and self.score:
             return f"{self.home} {self.score} {self.away}"
         return f"{self.home} – {self.away}"
@@ -110,6 +114,7 @@ class Match:
             "avond": night.title if night else None,
             "stad": night.city if night else None,
             "zaal": night.venue if night else None,
+            "tijd_geschat": self.estimated_time,
         }
 
 
@@ -199,9 +204,12 @@ def compute_standings(matches: list[Match]) -> list[dict]:
             continue
         loser = m.away if m.winner == m.home else m.home
         w, l = row(m.winner), row(loser)
-        w["partijen_gewonnen"] += 1
-        w["partijen_gespeeld"] += 1
+        # Bij een walkover telt de PDC de partij alleen mee voor wie zich
+        # afmeldde (als verloren); de doorgaande speler krijgt niets.
         l["partijen_gespeeld"] += 1
+        if not m.walkover:
+            w["partijen_gewonnen"] += 1
+            w["partijen_gespeeld"] += 1
         if m.home_score is not None and m.away_score is not None:
             hs, as_ = m.home_score, m.away_score
             row(m.home)["legs_voor"] += hs

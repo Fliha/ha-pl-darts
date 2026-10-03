@@ -1,0 +1,592 @@
+==League stage==
+===5 February – Night 1===
+{{flagicon|ENG}} '''[[Newcastle Arena]], [[Newcastle]]'''
+{{#invoke:bracket|8TeamBracket
+| RD1= '''Quarter-finals'''
+| RD2= '''Semi-finals'''
+| RD3= '''Final'''
+| RD1-team1   = {{PDCFlag|Josh Rock|avg=99.00}}
+| RD1-score1  = 2
+| RD1-team2   = {{PDCFlag|Jonny Clayton|avg=98.00}}
+| RD1-score2  = 6
+| RD1-team3   = {{PDCFlag|Luke Littler|avg=99.00}}
+| RD1-score3  = 4
+| RD1-team4   = {{PDCFlag|Gian van Veen|avg=98.00}}
+| RD1-score4  = 6
+| RD1-team5   = {{PDCFlag|Luke Humphries|avg=99.00}}
+| RD1-score5  = 6
+| RD1-team6   = {{PDCFlag|Gerwyn Price|avg=98.00}}
+| RD1-score6  = 5
+| RD1-team7   = {{PDCFlag|Stephen Bunting|avg=99.00}}
+| RD1-score7  = 2
+| RD1-team8   = {{PDCFlag|Michael van Gerwen|avg=98.00}}
+| RD1-score8  = 6
+| RD2-team1   = {{PDCFlag|Jonny Clayton|avg=99.00}}
+| RD2-score1  = 4
+| RD2-team2   = {{PDCFlag|Gian van Veen|avg=98.00}}
+| RD2-score2  = 6
+| RD2-team3   = {{PDCFlag|Luke Humphries|avg=99.00}}
+| RD2-score3  = 2
+| RD2-team4   = {{PDCFlag|Michael van Gerwen|avg=98.00}}
+| RD2-score4  = 6
+| RD3-team1   = {{PDCFlag|Gian van Veen|avg=99.00}}
+| RD3-score1  = 4
+| RD3-team2   = {{PDCFlag|Michael van Gerwen|avg=98.00}}
+| RD3-score2  = 6
+}}
+
+===12 February – Night 2===
+{{flagicon|ENG}} '''[[Antwerp Arena]], [[Antwerp]]'''
+{{#invoke:bracket|8TeamBracket
+| RD1= '''Quarter-finals'''
+| RD2= '''Semi-finals'''
+| RD3= '''Final'''
+| RD1-team1   = {{PDCFlag|Luke Littler|avg=99.00}}
+| RD1-score1  = 6
+| RD1-team2   = {{PDCFlag|Luke Humphries|avg=98.00}}
+| RD1-score2  = 5
+| RD1-team3   = {{PDCFlag|Michael van Gerwen|avg=99.00}}
+| RD1-score3  = 6
+| RD1-team4   = {{PDCFlag|Josh Rock|avg=98.00}}
+| RD1-score4  = 2
+| RD1-team5   = {{PDCFlag|Jonny Clayton|avg=99.00}}
+| RD1-score5  = 6
+| RD1-team6   = {{PDCFlag|Stephen Bunting|avg=98.00}}
+| RD1-score6  = 4
+| RD1-team7   = {{PDCFlag|Gerwyn Price|avg=99.00}}
+| RD1-score7  = 6
+| RD1-team8   = {{PDCFlag|Gian van Veen|avg=98.00}}
+| RD1-score8  = 5
+| RD2-team1   = {{PDCFlag|Luke Littler|avg=99.00}}
+| RD2-score1  = 4
+| RD2-team2   = {{PDCFlag|Michael van Gerwen|avg=98.00}}
+| RD2-score2  = 6
+| RD2-team3   = {{PDCFlag|Jonny Clayton|avg=99.00}}
+| RD2-score3  = 5
+| RD2-team4   = {{PDCFlag|Gerwyn Price|avg=98.00}}
+| RD2-score4  = 6
+| RD3-team1   = {{PDCFlag|Michael van Gerwen|avg=99.00}}
+| RD3-score1  = 3
+| RD3-team2   = {{PDCFlag|Gerwyn Price|avg=98.00}}
+| RD3-score2  = 6
+}}
+
+===19 February – Night 3===
+{{flagicon|ENG}} '''[[Glasgow Arena]], [[Glasgow]]'''
+{{#invoke:bracket|8TeamBracket
+| RD1= '''Quarter-finals'''
+| RD2= '''Semi-finals'''
+| RD3= '''Final'''
+| RD1-team1   = {{PDCFlag|Stephen Bunting|avg=99.84}}
+| RD1-score1  = 3
+| RD1-team2   = {{PDCFlag|Gian van Veen|avg=104.36}}
+| RD1-score2  = 6
+| RD1-team3   = {{PDCFlag|Luke Humphries|avg=105.95}}
+| RD1-score3  = 6
+| RD1-team4   = {{PDCFlag|Josh Rock|avg=97.11}}
+| RD1-score4 = 2
+| RD1-team5   = {{PDCFlag|Michael van Gerwen|avg=}}
+| RD1-score5  = {{Efn|Van Gerwen withdrew from the night due to illness.}}
+| RD1-team6   = '''{{PDCFlag|Luke Littler|avg=}}'''
+| RD1-score6  = {{nowrap|'''[[Walkover|w/o]]'''}}
+| RD1-team7   = {{PDCFlag|Jonny Clayton|avg=99.88}}
+| RD1-score7  = 6
+| RD1-team8   = {{PDCFlag|Gerwyn Price|avg=91.96}}
+| RD1-score8  = 3
+| RD2-team1   = {{PDCFlag|Gian van Veen|avg=99.00}}
+| RD2-score1  = 6
+| RD2-team2   = {{PDCFlag|Luke Humphries|avg=98.00}}
+| RD2-score2  = 5
+| RD2-team3   = {{PDCFlag|Luke Littler|avg=99.00}}
+| RD2-score3  = 1
+| RD2-team4   = {{PDCFlag|Jonny Clayton|avg=98.00}}
+| RD2-score4  = 6
+| RD3-team1   = {{PDCFlag|Gian van Veen|avg=99.00}}
+| RD3-score1  = 2
+| RD3-team2   = {{PDCFlag|Jonny Clayton|avg=98.00}}
+| RD3-score2  = 6
+}}
+
+===26 February – Night 4===
+{{flagicon|ENG}} '''[[Belfast Arena]], [[Belfast]]'''
+{{#invoke:bracket|8TeamBracket
+| RD1= '''Quarter-finals'''
+| RD2= '''Semi-finals'''
+| RD3= '''Final'''
+| RD1-team1   = {{PDCFlag|Luke Littler|avg=99.00}}
+| RD1-score1  = 3
+| RD1-team2   = {{PDCFlag|Jonny Clayton|avg=98.00}}
+| RD1-score2  = 6
+| RD1-team3   = {{PDCFlag|Stephen Bunting|avg=99.00}}
+| RD1-score3  = 6
+| RD1-team4   = {{PDCFlag|Luke Humphries|avg=98.00}}
+| RD1-score4  = 4
+| RD1-team5   = {{PDCFlag|Michael van Gerwen|avg=99.00}}
+| RD1-score5  = 5
+| RD1-team6   = {{PDCFlag|Gerwyn Price|avg=98.00}}
+| RD1-score6  = 6
+| RD1-team7   = {{PDCFlag|Gian van Veen|avg=99.00}}
+| RD1-score7  = 6
+| RD1-team8   = {{PDCFlag|Josh Rock|avg=98.00}}
+| RD1-score8  = 2
+| RD2-team1   = {{PDCFlag|Jonny Clayton|avg=99.00}}
+| RD2-score1  = 0
+| RD2-team2   = {{PDCFlag|Stephen Bunting|avg=98.00}}
+| RD2-score2  = 6
+| RD2-team3   = {{PDCFlag|Gerwyn Price|avg=99.00}}
+| RD2-score3  = 5
+| RD2-team4   = {{PDCFlag|Gian van Veen|avg=98.00}}
+| RD2-score4  = 6
+| RD3-team1   = {{PDCFlag|Stephen Bunting|avg=99.00}}
+| RD3-score1  = 6
+| RD3-team2   = {{PDCFlag|Gian van Veen|avg=98.00}}
+| RD3-score2  = 2
+}}
+
+===5 March – Night 5===
+{{flagicon|ENG}} '''[[Cardiff Arena]], [[Cardiff]]'''
+{{#invoke:bracket|8TeamBracket
+| RD1= '''Quarter-finals'''
+| RD2= '''Semi-finals'''
+| RD3= '''Final'''
+| RD1-team1   = {{PDCFlag|Michael van Gerwen|avg=99.00}}
+| RD1-score1  = 1
+| RD1-team2   = {{PDCFlag|Luke Humphries|avg=98.00}}
+| RD1-score2  = 6
+| RD1-team3   = {{PDCFlag|Gian van Veen|avg=99.00}}
+| RD1-score3  = 4
+| RD1-team4   = {{PDCFlag|Jonny Clayton|avg=98.00}}
+| RD1-score4  = 6
+| RD1-team5   = {{PDCFlag|Gerwyn Price|avg=99.00}}
+| RD1-score5  = 6
+| RD1-team6   = {{PDCFlag|Stephen Bunting|avg=98.00}}
+| RD1-score6  = 5
+| RD1-team7   = {{PDCFlag|Luke Littler|avg=99.00}}
+| RD1-score7  = 6
+| RD1-team8   = {{PDCFlag|Josh Rock|avg=98.00}}
+| RD1-score8  = 4
+| RD2-team1   = {{PDCFlag|Luke Humphries|avg=99.00}}
+| RD2-score1  = 4
+| RD2-team2   = {{PDCFlag|Jonny Clayton|avg=98.00}}
+| RD2-score2  = 6
+| RD2-team3   = {{PDCFlag|Gerwyn Price|avg=99.00}}
+| RD2-score3  = 3
+| RD2-team4   = {{PDCFlag|Luke Littler|avg=98.00}}
+| RD2-score4  = 6
+| RD3-team1   = {{PDCFlag|Jonny Clayton|avg=99.00}}
+| RD3-score1  = 4
+| RD3-team2   = {{PDCFlag|Luke Littler|avg=98.00}}
+| RD3-score2  = 6
+}}
+
+===12 March – Night 6===
+{{flagicon|ENG}} '''[[Nottingham Arena]], [[Nottingham]]'''
+{{#invoke:bracket|8TeamBracket
+| RD1= '''Quarter-finals'''
+| RD2= '''Semi-finals'''
+| RD3= '''Final'''
+| RD1-team1   = {{PDCFlag|Josh Rock|avg=99.00}}
+| RD1-score1  = 1
+| RD1-team2   = {{PDCFlag|Stephen Bunting|avg=98.00}}
+| RD1-score2  = 6
+| RD1-team3   = {{PDCFlag|Jonny Clayton|avg=99.00}}
+| RD1-score3  = 6
+| RD1-team4   = {{PDCFlag|Michael van Gerwen|avg=98.00}}
+| RD1-score4  = 3
+| RD1-team5   = {{PDCFlag|Luke Humphries|avg=99.00}}
+| RD1-score5  = 6
+| RD1-team6   = {{PDCFlag|Gian van Veen|avg=98.00}}
+| RD1-score6  = 4
+| RD1-team7   = {{PDCFlag|Gerwyn Price|avg=99.00}}
+| RD1-score7  = 5
+| RD1-team8   = {{PDCFlag|Luke Littler|avg=98.00}}
+| RD1-score8  = 6
+| RD2-team1   = {{PDCFlag|Stephen Bunting|avg=99.00}}
+| RD2-score1  = 3
+| RD2-team2   = {{PDCFlag|Jonny Clayton|avg=98.00}}
+| RD2-score2  = 6
+| RD2-team3   = {{PDCFlag|Luke Humphries|avg=99.00}}
+| RD2-score3  = 6
+| RD2-team4   = {{PDCFlag|Luke Littler|avg=98.00}}
+| RD2-score4  = 5
+| RD3-team1   = {{PDCFlag|Jonny Clayton|avg=99.00}}
+| RD3-score1  = 6
+| RD3-team2   = {{PDCFlag|Luke Humphries|avg=98.00}}
+| RD3-score2  = 1
+}}
+
+===19 March – Night 7===
+{{flagicon|ENG}} '''[[Dublin Arena]], [[Dublin]]'''
+{{#invoke:bracket|8TeamBracket
+| RD1= '''Quarter-finals'''
+| RD2= '''Semi-finals'''
+| RD3= '''Final'''
+| RD1-team1   = {{PDCFlag|Gian van Veen|avg=}}
+| RD1-score1  = {{Efn|Van Veen withdrew from the night after being diagnosed with kidney stones.}}
+| RD1-team2   = '''{{PDCFlag|Michael van Gerwen|avg=}}'''
+| RD1-score2  = {{nowrap|'''[[Walkover|w/o]]'''}}
+| RD1-team3   = {{PDCFlag|Stephen Bunting|avg=104.10}}
+| RD1-score3  = 3
+| RD1-team4   = {{PDCFlag|Luke Littler|avg=105.07}}
+| RD1-score4 = 6
+| RD1-team5   = {{PDCFlag|Josh Rock|avg=84.21}}
+| RD1-score5  = 0
+| RD1-team6   = {{PDCFlag|Gerwyn Price|avg=103.66}}
+| RD1-score6  = 6
+| RD1-team7   = {{PDCFlag|Jonny Clayton|avg=95.14}}
+| RD1-score7  = 3
+| RD1-team8   = {{PDCFlag|Luke Humphries|avg=103.44}}
+| RD1-score8  = 6
+| RD2-team1   = {{PDCFlag|Michael van Gerwen|avg=99.00}}
+| RD2-score1  = 5
+| RD2-team2   = {{PDCFlag|Luke Littler|avg=98.00}}
+| RD2-score2  = 6
+| RD2-team3   = {{PDCFlag|Gerwyn Price|avg=99.00}}
+| RD2-score3  = 6
+| RD2-team4   = {{PDCFlag|Luke Humphries|avg=98.00}}
+| RD2-score4  = 1
+| RD3-team1   = {{PDCFlag|Luke Littler|avg=99.00}}
+| RD3-score1  = 6
+| RD3-team2   = {{PDCFlag|Gerwyn Price|avg=98.00}}
+| RD3-score2  = 5
+}}
+
+===26 March – Night 8===
+{{flagicon|ENG}} '''[[Berlin Arena]], [[Berlin]]'''
+{{#invoke:bracket|8TeamBracket
+| RD1= '''Quarter-finals'''
+| RD2= '''Semi-finals'''
+| RD3= '''Final'''
+| RD1-team1   = {{PDCFlag|Jonny Clayton|avg=99.00}}
+| RD1-score1  = 3
+| RD1-team2   = {{PDCFlag|Josh Rock|avg=98.00}}
+| RD1-score2  = 6
+| RD1-team3   = {{PDCFlag|Luke Humphries|avg=99.00}}
+| RD1-score3  = 3
+| RD1-team4   = {{PDCFlag|Michael van Gerwen|avg=98.00}}
+| RD1-score4  = 6
+| RD1-team5   = {{PDCFlag|Luke Littler|avg=99.00}}
+| RD1-score5  = 6
+| RD1-team6   = {{PDCFlag|Stephen Bunting|avg=98.00}}
+| RD1-score6  = 3
+| RD1-team7   = {{PDCFlag|Gerwyn Price|avg=99.00}}
+| RD1-score7  = 6
+| RD1-team8   = {{PDCFlag|Gian van Veen|avg=98.00}}
+| RD1-score8  = 1
+| RD2-team1   = {{PDCFlag|Josh Rock|avg=99.00}}
+| RD2-score1  = 3
+| RD2-team2   = {{PDCFlag|Michael van Gerwen|avg=98.00}}
+| RD2-score2  = 6
+| RD2-team3   = {{PDCFlag|Luke Littler|avg=99.00}}
+| RD2-score3  = 6
+| RD2-team4   = {{PDCFlag|Gerwyn Price|avg=98.00}}
+| RD2-score4  = 4
+| RD3-team1   = {{PDCFlag|Michael van Gerwen|avg=99.00}}
+| RD3-score1  = 4
+| RD3-team2   = {{PDCFlag|Luke Littler|avg=98.00}}
+| RD3-score2  = 6
+}}
+
+===2 April – Night 9===
+{{flagicon|ENG}} '''[[Manchester Arena]], [[Manchester]]'''
+{{#invoke:bracket|8TeamBracket
+| RD1= '''Quarter-finals'''
+| RD2= '''Semi-finals'''
+| RD3= '''Final'''
+| RD1-team1   = {{PDCFlag|Michael van Gerwen|avg=99.00}}
+| RD1-score1  = 3
+| RD1-team2   = {{PDCFlag|Stephen Bunting|avg=98.00}}
+| RD1-score2  = 6
+| RD1-team3   = {{PDCFlag|Gerwyn Price|avg=99.00}}
+| RD1-score3  = 6
+| RD1-team4   = {{PDCFlag|Luke Humphries|avg=98.00}}
+| RD1-score4  = 2
+| RD1-team5   = {{PDCFlag|Gian van Veen|avg=99.00}}
+| RD1-score5  = 6
+| RD1-team6   = {{PDCFlag|Luke Littler|avg=98.00}}
+| RD1-score6  = 5
+| RD1-team7   = {{PDCFlag|Jonny Clayton|avg=99.00}}
+| RD1-score7  = 4
+| RD1-team8   = {{PDCFlag|Josh Rock|avg=98.00}}
+| RD1-score8  = 6
+| RD2-team1   = {{PDCFlag|Stephen Bunting|avg=99.00}}
+| RD2-score1  = 2
+| RD2-team2   = {{PDCFlag|Gerwyn Price|avg=98.00}}
+| RD2-score2  = 6
+| RD2-team3   = {{PDCFlag|Gian van Veen|avg=99.00}}
+| RD2-score3  = 6
+| RD2-team4   = {{PDCFlag|Josh Rock|avg=98.00}}
+| RD2-score4  = 3
+| RD3-team1   = {{PDCFlag|Gerwyn Price|avg=99.00}}
+| RD3-score1  = 6
+| RD3-team2   = {{PDCFlag|Gian van Veen|avg=98.00}}
+| RD3-score2  = 2
+}}
+
+===9 April – Night 10===
+{{flagicon|ENG}} '''[[Brighton Arena]], [[Brighton]]'''
+{{#invoke:bracket|8TeamBracket
+| RD1= '''Quarter-finals'''
+| RD2= '''Semi-finals'''
+| RD3= '''Final'''
+| RD1-team1   = {{PDCFlag|Luke Humphries|avg=99.00}}
+| RD1-score1  = 5
+| RD1-team2   = {{PDCFlag|Jonny Clayton|avg=98.00}}
+| RD1-score2  = 6
+| RD1-team3   = {{PDCFlag|Gerwyn Price|avg=99.00}}
+| RD1-score3  = 3
+| RD1-team4   = {{PDCFlag|Josh Rock|avg=98.00}}
+| RD1-score4  = 6
+| RD1-team5   = {{PDCFlag|Luke Littler|avg=99.00}}
+| RD1-score5  = 4
+| RD1-team6   = {{PDCFlag|Stephen Bunting|avg=98.00}}
+| RD1-score6  = 6
+| RD1-team7   = {{PDCFlag|Michael van Gerwen|avg=99.00}}
+| RD1-score7  = 6
+| RD1-team8   = {{PDCFlag|Gian van Veen|avg=98.00}}
+| RD1-score8  = 4
+| RD2-team1   = {{PDCFlag|Jonny Clayton|avg=99.00}}
+| RD2-score1  = 6
+| RD2-team2   = {{PDCFlag|Josh Rock|avg=98.00}}
+| RD2-score2  = 4
+| RD2-team3   = {{PDCFlag|Stephen Bunting|avg=99.00}}
+| RD2-score3  = 5
+| RD2-team4   = {{PDCFlag|Michael van Gerwen|avg=98.00}}
+| RD2-score4  = 6
+| RD3-team1   = {{PDCFlag|Jonny Clayton|avg=99.00}}
+| RD3-score1  = 6
+| RD3-team2   = {{PDCFlag|Michael van Gerwen|avg=98.00}}
+| RD3-score2  = 5
+}}
+
+===16 April – Night 11===
+{{flagicon|ENG}} '''[[Rotterdam Arena]], [[Rotterdam]]'''
+{{#invoke:bracket|8TeamBracket
+| RD1= '''Quarter-finals'''
+| RD2= '''Semi-finals'''
+| RD3= '''Final'''
+| RD1-team1   = {{PDCFlag|Luke Littler|avg=99.00}}
+| RD1-score1  = 6
+| RD1-team2   = {{PDCFlag|Gerwyn Price|avg=98.00}}
+| RD1-score2  = 3
+| RD1-team3   = {{PDCFlag|Gian van Veen|avg=99.00}}
+| RD1-score3  = 2
+| RD1-team4   = {{PDCFlag|Luke Humphries|avg=98.00}}
+| RD1-score4  = 6
+| RD1-team5   = {{PDCFlag|Michael van Gerwen|avg=99.00}}
+| RD1-score5  = 2
+| RD1-team6   = {{PDCFlag|Jonny Clayton|avg=98.00}}
+| RD1-score6  = 6
+| RD1-team7   = {{PDCFlag|Stephen Bunting|avg=99.00}}
+| RD1-score7  = 1
+| RD1-team8   = {{PDCFlag|Josh Rock|avg=98.00}}
+| RD1-score8  = 6
+| RD2-team1   = {{PDCFlag|Luke Littler|avg=99.00}}
+| RD2-score1  = 6
+| RD2-team2   = {{PDCFlag|Luke Humphries|avg=98.00}}
+| RD2-score2  = 5
+| RD2-team3   = {{PDCFlag|Jonny Clayton|avg=99.00}}
+| RD2-score3  = 6
+| RD2-team4   = {{PDCFlag|Josh Rock|avg=98.00}}
+| RD2-score4  = 5
+| RD3-team1   = {{PDCFlag|Luke Littler|avg=99.00}}
+| RD3-score1  = 4
+| RD3-team2   = {{PDCFlag|Jonny Clayton|avg=98.00}}
+| RD3-score2  = 6
+}}
+
+===23 April – Night 12===
+{{flagicon|ENG}} '''[[Liverpool Arena]], [[Liverpool]]'''
+{{#invoke:bracket|8TeamBracket
+| RD1= '''Quarter-finals'''
+| RD2= '''Semi-finals'''
+| RD3= '''Final'''
+| RD1-team1   = {{PDCFlag|Gian van Veen|avg=99.00}}
+| RD1-score1  = 6
+| RD1-team2   = {{PDCFlag|Gerwyn Price|avg=98.00}}
+| RD1-score2  = 4
+| RD1-team3   = {{PDCFlag|Stephen Bunting|avg=99.00}}
+| RD1-score3  = 5
+| RD1-team4   = {{PDCFlag|Jonny Clayton|avg=98.00}}
+| RD1-score4  = 6
+| RD1-team5   = {{PDCFlag|Josh Rock|avg=99.00}}
+| RD1-score5  = 3
+| RD1-team6   = {{PDCFlag|Michael van Gerwen|avg=98.00}}
+| RD1-score6  = 6
+| RD1-team7   = {{PDCFlag|Luke Humphries|avg=99.00}}
+| RD1-score7  = 2
+| RD1-team8   = {{PDCFlag|Luke Littler|avg=98.00}}
+| RD1-score8  = 6
+| RD2-team1   = {{PDCFlag|Gian van Veen|avg=99.00}}
+| RD2-score1  = 5
+| RD2-team2   = {{PDCFlag|Jonny Clayton|avg=98.00}}
+| RD2-score2  = 6
+| RD2-team3   = {{PDCFlag|Michael van Gerwen|avg=99.00}}
+| RD2-score3  = 5
+| RD2-team4   = {{PDCFlag|Luke Littler|avg=98.00}}
+| RD2-score4  = 6
+| RD3-team1   = {{PDCFlag|Jonny Clayton|avg=99.00}}
+| RD3-score1  = 1
+| RD3-team2   = {{PDCFlag|Luke Littler|avg=98.00}}
+| RD3-score2  = 6
+}}
+
+===30 April – Night 13===
+{{flagicon|ENG}} '''[[Aberdeen Arena]], [[Aberdeen]]'''
+{{#invoke:bracket|8TeamBracket
+| RD1= '''Quarter-finals'''
+| RD2= '''Semi-finals'''
+| RD3= '''Final'''
+| RD1-team1   = {{PDCFlag|Josh Rock|avg=99.00}}
+| RD1-score1  = 3
+| RD1-team2   = {{PDCFlag|Luke Littler|avg=98.00}}
+| RD1-score2  = 6
+| RD1-team3   = {{PDCFlag|Stephen Bunting|avg=99.00}}
+| RD1-score3  = 5
+| RD1-team4   = {{PDCFlag|Gerwyn Price|avg=98.00}}
+| RD1-score4  = 6
+| RD1-team5   = {{PDCFlag|Jonny Clayton|avg=99.00}}
+| RD1-score5  = 2
+| RD1-team6   = {{PDCFlag|Gian van Veen|avg=98.00}}
+| RD1-score6  = 6
+| RD1-team7   = {{PDCFlag|Luke Humphries|avg=99.00}}
+| RD1-score7  = 6
+| RD1-team8   = {{PDCFlag|Michael van Gerwen|avg=98.00}}
+| RD1-score8  = 3
+| RD2-team1   = {{PDCFlag|Luke Littler|avg=99.00}}
+| RD2-score1  = 6
+| RD2-team2   = {{PDCFlag|Gerwyn Price|avg=98.00}}
+| RD2-score2  = 1
+| RD2-team3   = {{PDCFlag|Gian van Veen|avg=99.00}}
+| RD2-score3  = 3
+| RD2-team4   = {{PDCFlag|Luke Humphries|avg=98.00}}
+| RD2-score4  = 6
+| RD3-team1   = {{PDCFlag|Luke Littler|avg=99.00}}
+| RD3-score1  = 6
+| RD3-team2   = {{PDCFlag|Luke Humphries|avg=98.00}}
+| RD3-score2  = 5
+}}
+
+===7 May – Night 14===
+{{flagicon|ENG}} '''[[Leeds Arena]], [[Leeds]]'''
+{{#invoke:bracket|8TeamBracket
+| RD1= '''Quarter-finals'''
+| RD2= '''Semi-finals'''
+| RD3= '''Final'''
+| RD1-team1   = {{PDCFlag|Gerwyn Price|avg=99.00}}
+| RD1-score1  = 2
+| RD1-team2   = {{PDCFlag|Jonny Clayton|avg=98.00}}
+| RD1-score2  = 6
+| RD1-team3   = {{PDCFlag|Luke Littler|avg=99.00}}
+| RD1-score3  = 6
+| RD1-team4   = {{PDCFlag|Michael van Gerwen|avg=98.00}}
+| RD1-score4  = 5
+| RD1-team5   = {{PDCFlag|Josh Rock|avg=99.00}}
+| RD1-score5  = 5
+| RD1-team6   = {{PDCFlag|Luke Humphries|avg=98.00}}
+| RD1-score6  = 6
+| RD1-team7   = {{PDCFlag|Gian van Veen|avg=99.00}}
+| RD1-score7  = 5
+| RD1-team8   = {{PDCFlag|Stephen Bunting|avg=98.00}}
+| RD1-score8  = 6
+| RD2-team1   = {{PDCFlag|Jonny Clayton|avg=99.00}}
+| RD2-score1  = 5
+| RD2-team2   = {{PDCFlag|Luke Littler|avg=98.00}}
+| RD2-score2  = 6
+| RD2-team3   = {{PDCFlag|Luke Humphries|avg=99.00}}
+| RD2-score3  = 6
+| RD2-team4   = {{PDCFlag|Stephen Bunting|avg=98.00}}
+| RD2-score4  = 5
+| RD3-team1   = {{PDCFlag|Luke Littler|avg=99.00}}
+| RD3-score1  = 6
+| RD3-team2   = {{PDCFlag|Luke Humphries|avg=98.00}}
+| RD3-score2  = 5
+}}
+
+===14 May – Night 15===
+{{flagicon|ENG}} '''[[Birmingham Arena]], [[Birmingham]]'''
+{{#invoke:bracket|8TeamBracket
+| RD1= '''Quarter-finals'''
+| RD2= '''Semi-finals'''
+| RD3= '''Final'''
+| RD1-team1   = {{PDCFlag|Josh Rock|avg=99.00}}
+| RD1-score1  = 3
+| RD1-team2   = {{PDCFlag|Gian van Veen|avg=98.00}}
+| RD1-score2  = 6
+| RD1-team3   = {{PDCFlag|Gerwyn Price|avg=99.00}}
+| RD1-score3  = 6
+| RD1-team4   = {{PDCFlag|Michael van Gerwen|avg=98.00}}
+| RD1-score4  = 4
+| RD1-team5   = {{PDCFlag|Luke Humphries|avg=99.00}}
+| RD1-score5  = 6
+| RD1-team6   = {{PDCFlag|Stephen Bunting|avg=98.00}}
+| RD1-score6  = 0
+| RD1-team7   = {{PDCFlag|Jonny Clayton|avg=99.00}}
+| RD1-score7  = 0
+| RD1-team8   = {{PDCFlag|Luke Littler|avg=98.00}}
+| RD1-score8  = 6
+| RD2-team1   = {{PDCFlag|Gian van Veen|avg=99.00}}
+| RD2-score1  = 4
+| RD2-team2   = {{PDCFlag|Gerwyn Price|avg=98.00}}
+| RD2-score2  = 6
+| RD2-team3   = {{PDCFlag|Luke Humphries|avg=99.00}}
+| RD2-score3  = 6
+| RD2-team4   = {{PDCFlag|Luke Littler|avg=98.00}}
+| RD2-score4  = 3
+| RD3-team1   = {{PDCFlag|Gerwyn Price|avg=99.00}}
+| RD3-score1  = 4
+| RD3-team2   = {{PDCFlag|Luke Humphries|avg=98.00}}
+| RD3-score2  = 6
+}}
+
+===21 May – Night 16===
+{{flagicon|ENG}} '''[[Sheffield Arena]], [[Sheffield]]'''
+{{#invoke:bracket|8TeamBracket
+| RD1= '''Quarter-finals'''
+| RD2= '''Semi-finals'''
+| RD3= '''Final'''
+| RD1-team1   = {{PDCFlag|Jonny Clayton|avg=99.00}}
+| RD1-score1  = 3
+| RD1-team2   = {{PDCFlag|Stephen Bunting|avg=98.00}}
+| RD1-score2  = 6
+| RD1-team3   = {{PDCFlag|Gerwyn Price|avg=99.00}}
+| RD1-score3  = 6
+| RD1-team4   = {{PDCFlag|Gian van Veen|avg=98.00}}
+| RD1-score4  = 2
+| RD1-team5   = {{PDCFlag|Luke Littler|avg=99.00}}
+| RD1-score5  = 6
+| RD1-team6   = {{PDCFlag|Josh Rock|avg=98.00}}
+| RD1-score6  = 5
+| RD1-team7   = {{PDCFlag|Luke Humphries|avg=99.00}}
+| RD1-score7  = 6
+| RD1-team8   = {{PDCFlag|Michael van Gerwen|avg=98.00}}
+| RD1-score8  = 5
+| RD2-team1   = {{PDCFlag|Stephen Bunting|avg=99.00}}
+| RD2-score1  = 6
+| RD2-team2   = {{PDCFlag|Gerwyn Price|avg=98.00}}
+| RD2-score2  = 3
+| RD2-team3   = {{PDCFlag|Luke Littler|avg=99.00}}
+| RD2-score3  = 1
+| RD2-team4   = {{PDCFlag|Luke Humphries|avg=98.00}}
+| RD2-score4  = 6
+| RD3-team1   = {{PDCFlag|Stephen Bunting|avg=99.00}}
+| RD3-score1  = 6
+| RD3-team2   = {{PDCFlag|Luke Humphries|avg=98.00}}
+| RD3-score2  = 3
+}}
+
+==28 May – Play-offs==
+{{flagicon|ENG}} '''[[The O2 Arena|The O<sub>2</sub>]], [[London]]'''
+{| class=wikitable style="text-align:center"
+|colspan="3" | '''Semi-finals''' (best of 19 legs)
+|- align=left
+|align=right| {{PDCFlag|Luke Littler|avg=98.47|b=1}}||align=center| '''10'''–9 ||{{PDCFlag|Gerwyn Price|avg=100.42}}
+|- align=left
+|align=right| {{PDCFlag|Jonny Clayton|avg=95.86}}||align=center| 9–'''10''' ||{{PDCFlag|Luke Humphries|avg=96.16|b=1}}
+|- align=center
+|colspan="3" | '''Final''' (best of 21 legs)
+|- align=left
+|align=right| {{PDCFlag|Luke Littler|avg=111.67|b=1}}||align=center| '''11'''–10 ||{{PDCFlag|Luke Humphries|avg=105.60}}
+|}
+
+==Standings==

@@ -15,7 +15,7 @@ Zie in Home Assistant **wanneer, waar, hoe laat en wie** er speelt in de PDC Pre
 | `sensor.pl_darts_last_result` | Laatst gespeelde partij met uitslag |
 | `sensor.pl_darts_standings` | Koploper; de hele ranglijst staat in het attribuut `stand` |
 
-Tussen seizoenen (zoals nu) staan de 17 speelavonden van het nieuwe seizoen al in de agenda, en toont de stand de eindstand van vorig jaar.
+Tussen seizoenen (zoals nu) staan de 17 speelavonden van het nieuwe seizoen al in de agenda, samen met alle avonden en uitslagen van vorig seizoen. De stand toont dan de eindstand van vorig jaar.
 
 ## Installeren via HACS
 
@@ -32,7 +32,7 @@ Plak [`examples/dashboard-kaart.yaml`](examples/dashboard-kaart.yaml) in een han
 
 ## Hoe het werkt (en wat je moet weten)
 
-- **Wedstrijden, tijden en uitslagen** komen van de onofficiële API van SofaScore. Die is niet bedoeld voor gebruik door derden en kan zonder waarschuwing veranderen of geblokkeerd worden. Gebruik het alleen voor eigen, niet-commercieel gebruik. Er wordt rustig gepeild: elk uur, op speeldagen elke 10 minuten en tijdens een avond elke minuut.
+- **Wedstrijden, tijden en uitslagen** komen bij voorkeur van de onofficiële API van SofaScore: die heeft exacte begintijden en live tussenstanden. SofaScore blokkeert echter vaak verzoeken die niet uit een browser komen. Dan schakelt de integratie automatisch over op **Wikipedia** (de seizoenspagina, CC BY-SA). Daar staan de indeling en uitslagen per avond; de begintijd per partij wordt dan geschat, en live tussenstanden zijn er niet. Na een blokkade wordt SofaScore pas na 6 uur opnieuw geprobeerd. In de attributen `bron` en `bron_fout` zie je welke bron er gebruikt wordt.
 - **Steden en zalen** staan in `const.py` (`SCHEDULES`), overgenomen van het officiële PDC-schema. Voor een nieuw seizoen voeg je daar één blok toe.
 - **De stand** wordt zelf berekend uit de uitslagen: winnaar 5 punten, verliezend finalist 3, verliezende halvefinalisten 2. Bij gelijke stand telt eerst het aantal gewonnen avonden, dan gewonnen partijen. Play-off-wedstrijden tellen niet mee.
 - **Begintijd** van een avond zonder bekende indeling is een schatting (19:00 Britse tijd = 20:00 bij ons). Zodra de partijen bekend zijn, gebruikt de agenda de echte tijden.

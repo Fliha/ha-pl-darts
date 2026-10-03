@@ -11,16 +11,21 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from homeassistant.util import dt as dt_util
 
-from .api import DartsApi, DartsApiError
+from .api import DartsApi, DartsApiError, WikipediaApi
 from .const import (
     DOMAIN,
     SCAN_INTERVAL_IDLE,
     SCAN_INTERVAL_LIVE,
     SCAN_INTERVAL_MATCHDAY,
+    SCAN_INTERVAL_WIKI_MIN,
+    SOFASCORE_RETRY,
 )
 from .model import Match, Night, build_nights, compute_standings, target_season
 
 _LOGGER = logging.getLogger(__name__)
+
+SOURCE_SOFASCORE = "SofaScore"
+SOURCE_WIKIPEDIA = "Wikipedia"
 
 
 @dataclass
@@ -33,6 +38,8 @@ class DartsData:
     standings: list[dict]
     standings_season: int | None
     previous_matches: list[Match] = field(default_factory=list)
+    previous_nights: list[Night] = field(default_factory=list)
+    source: str | None = None
     source_error: str | None = None
 
     def next_night(self, now: datetime) -> Night | None:
@@ -49,14 +56,14 @@ class DartsData:
 
     def last_match(self) -> Match | None:
         done = [m for m in self.matches + self.previous_matches if m.status == "finished"]
-        return max(done, key=lambda m: m.start) if done else None
+        return max(done, key=lambda m: (m.start, m.id)) if done else None
 
 
 type DartsConfigEntry = ConfigEntry[DartsCoordinator]
 
 
 class DartsCoordinator(DataUpdateCoordinator[DartsData]):
-    """Coördineert updates."""
+    """Coördineert updates: eerst SofaScore, anders Wikipedia."""
 
     def __init__(self, hass: HomeAssistant, entry: DartsConfigEntry) -> None:
         super().__init__(
@@ -66,62 +73,106 @@ class DartsCoordinator(DataUpdateCoordinator[DartsData]):
             name=DOMAIN,
             update_interval=SCAN_INTERVAL_IDLE,
         )
-        self.api = DartsApi(async_get_clientsession(hass))
-        self._prev_cache: tuple[int, list[Match]] | None = None
-        self._warned = False
+        session = async_get_clientsession(hass)
+        self.sofa = DartsApi(session)
+        self.wiki = WikipediaApi(session)
+        self._sofa_blocked_until: datetime | None = None
+        self._prev_cache: dict[str, tuple[int, list[Match]]] = {}
+        self._warned: set[str] = set()
+
+    async def _from_sofascore(self, season: int) -> tuple[list[Match], list[Match]]:
+        seasons = await self.sofa.seasons()
+        current = await self.sofa.season_matches(seasons[season]) if season in seasons else []
+        prev_year = season - 1
+        previous: list[Match] = []
+        if prev_year in seasons:
+            cached = self._prev_cache.get(SOURCE_SOFASCORE)
+            if cached and cached[0] == prev_year:
+                previous = cached[1]
+            else:
+                previous = await self.sofa.season_matches(seasons[prev_year])
+                self._prev_cache[SOURCE_SOFASCORE] = (prev_year, previous)
+        return current, previous
+
+    async def _from_wikipedia(self, season: int) -> tuple[list[Match], list[Match]]:
+        current = await self.wiki.season_matches(season)
+        prev_year = season - 1
+        cached = self._prev_cache.get(SOURCE_WIKIPEDIA)
+        if cached and cached[0] == prev_year:
+            previous = cached[1]
+        else:
+            previous = await self.wiki.season_matches(prev_year)
+            self._prev_cache[SOURCE_WIKIPEDIA] = (prev_year, previous)
+        return current, previous
+
+    def _warn_once(self, key: str, msg: str, *args) -> None:
+        if key not in self._warned:
+            _LOGGER.warning(msg, *args)
+            self._warned.add(key)
 
     async def _async_update_data(self) -> DartsData:
         now = dt_util.utcnow()
         season = target_season(dt_util.now().date())
-        source_error: str | None = None
         matches: list[Match] = []
         previous: list[Match] = []
-        try:
-            seasons = await self.api.seasons()
-            if season in seasons:
-                matches = await self.api.season_matches(seasons[season])
-            older = [y for y in seasons if y < season]
-            if older:
-                prev_year = max(older)
-                if self._prev_cache and self._prev_cache[0] == prev_year:
-                    previous = self._prev_cache[1]
-                else:
-                    previous = await self.api.season_matches(seasons[prev_year])
-                    self._prev_cache = (prev_year, previous)
-        except DartsApiError as err:
-            # Bron niet bereikbaar: val terug op wat we al hadden, of alleen het
-            # vaste schema. De integratie blijft dan gewoon werken.
-            source_error = str(err)
-            if not self._warned:
-                _LOGGER.warning("Wedstrijddata niet beschikbaar, alleen schema: %s", err)
-                self._warned = True
-            old = self.data
-            if old and old.season == season:
-                matches = old.matches
-                previous = old.previous_matches
-            elif self._prev_cache:
-                previous = self._prev_cache[1]
-        else:
-            if self._warned:
-                _LOGGER.info("Wedstrijddata weer beschikbaar")
-            self._warned = False
+        source: str | None = None
+        errors: list[str] = []
+
+        if not self._sofa_blocked_until or now >= self._sofa_blocked_until:
+            try:
+                matches, previous = await self._from_sofascore(season)
+                source = SOURCE_SOFASCORE
+                self._sofa_blocked_until = None
+                self._warned.discard(SOURCE_SOFASCORE)
+            except DartsApiError as err:
+                errors.append(str(err))
+                self._sofa_blocked_until = now + SOFASCORE_RETRY
+                self._warn_once(
+                    SOURCE_SOFASCORE, "SofaScore niet bruikbaar, verder met Wikipedia: %s", err
+                )
+
+        if source is None:
+            try:
+                matches, previous = await self._from_wikipedia(season)
+                source = SOURCE_WIKIPEDIA
+                self._warned.discard(SOURCE_WIKIPEDIA)
+            except DartsApiError as err:
+                errors.append(str(err))
+                self._warn_once(
+                    SOURCE_WIKIPEDIA, "Ook Wikipedia niet bereikbaar, alleen schema: %s", err
+                )
+                # Houd vast wat we eerder al hadden.
+                old = self.data
+                if old and old.season == season:
+                    matches, previous, source = old.matches, old.previous_matches, old.source
 
         nights = build_nights(season, matches)
+        prev_season = previous[0].season if previous else season - 1
+        previous_nights = build_nights(prev_season, previous)
+
         standings = compute_standings(matches)
         standings_season: int | None = season
         if not standings and previous:
             # Nieuw seizoen nog niet begonnen: toon de eindstand van vorig jaar.
             standings = compute_standings(previous)
-            standings_season = previous[0].season
+            standings_season = prev_season
         if not standings:
             standings_season = None
 
         data = DartsData(
-            season, nights, matches, standings, standings_season, previous, source_error
+            season=season,
+            nights=nights,
+            matches=matches,
+            standings=standings,
+            standings_season=standings_season,
+            previous_matches=previous,
+            previous_nights=previous_nights,
+            source=source,
+            source_error="; ".join(errors) or None,
         )
         interval = self._pick_interval(data, now)
-        if source_error:
-            interval = max(interval, timedelta(minutes=15))  # bron niet bestoken
+        if source != SOURCE_SOFASCORE:
+            interval = max(interval, SCAN_INTERVAL_WIKI_MIN)
         self.update_interval = interval
         return data
 

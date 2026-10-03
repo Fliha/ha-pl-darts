@@ -32,6 +32,8 @@ cards:
 
       **Laatste uitslag:** {{ states('sensor.pl_darts_last_result') }}
 
+      <sub>Bron: {{ state_attr('sensor.pl_darts_next_night', 'bron') or 'alleen schema' }}</sub>
+
   - type: markdown
     content: >-
       {% set s = states.sensor.pl_darts_standings %}

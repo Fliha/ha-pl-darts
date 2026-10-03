@@ -6,8 +6,17 @@ import logging
 
 import aiohttp
 
-from .const import API_BASES, HEADERS, MAX_PAGES, UNIQUE_TOURNAMENT_ID
+from .const import (
+    API_BASES,
+    HEADERS,
+    MAX_PAGES,
+    UNIQUE_TOURNAMENT_ID,
+    WIKI_TITLE,
+    WIKI_URL,
+    WIKI_USER_AGENT,
+)
 from .model import Match, parse_event
+from .wiki import parse_wikitext
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -80,3 +89,26 @@ class DartsApi:
         upcoming = await self._events(season_id, "next")
         unique = {m.id: m for m in played + upcoming}
         return sorted(unique.values(), key=lambda m: m.start)
+
+
+class WikipediaApi:
+    """Reservebron: indeling en uitslagen uit de Wikipedia-pagina."""
+
+    def __init__(self, session: aiohttp.ClientSession) -> None:
+        self._session = session
+
+    async def season_matches(self, year: int) -> list[Match]:
+        params = {"title": WIKI_TITLE.format(year=year), "action": "raw"}
+        try:
+            async with asyncio.timeout(20):
+                resp = await self._session.get(
+                    WIKI_URL, params=params, headers={"User-Agent": WIKI_USER_AGENT}
+                )
+                if resp.status == 404:
+                    return []  # pagina bestaat (nog) niet
+                if resp.status != 200:
+                    raise DartsApiError(f"Wikipedia gaf HTTP {resp.status}")
+                text = await resp.text()
+        except (aiohttp.ClientError, TimeoutError) as err:
+            raise DartsApiError(f"Wikipedia niet bereikbaar: {err}") from err
+        return parse_wikitext(text, year)
