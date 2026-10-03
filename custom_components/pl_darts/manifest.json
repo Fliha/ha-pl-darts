@@ -1,12 +1,12 @@
 {
   "domain": "pl_darts",
   "name": "Premier League Darts",
-  "codeowners": ["@JOUW_GITHUB_NAAM"],
+  "codeowners": ["@Fliha"],
   "config_flow": true,
-  "documentation": "https://github.com/JOUW_GITHUB_NAAM/ha-pl-darts",
+  "documentation": "https://github.com/Fliha/ha-pl-darts",
   "integration_type": "service",
   "iot_class": "cloud_polling",
-  "issue_tracker": "https://github.com/JOUW_GITHUB_NAAM/ha-pl-darts/issues",
+  "issue_tracker": "https://github.com/Fliha/ha-pl-darts/issues",
   "requirements": [],
   "version": "0.1.0"
 }
