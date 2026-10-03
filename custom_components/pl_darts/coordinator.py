@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
@@ -18,9 +18,11 @@ from .const import (
     SCAN_INTERVAL_LIVE,
     SCAN_INTERVAL_MATCHDAY,
     SCAN_INTERVAL_WIKI_MIN,
+    SCAN_INTERVAL_WK_ACTIVE,
     SOFASCORE_RETRY,
 )
 from .model import Match, Night, build_nights, compute_standings, target_season
+from .wk import Session, build_sessions, still_in, wk_period, wk_target_season
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -41,6 +43,7 @@ class DartsData:
     previous_nights: list[Night] = field(default_factory=list)
     source: str | None = None
     source_error: str | None = None
+    wk: "WkData | None" = None
 
     def next_night(self, now: datetime) -> Night | None:
         return next((n for n in self.nights if n.end > now), None)
@@ -57,6 +60,44 @@ class DartsData:
     def last_match(self) -> Match | None:
         done = [m for m in self.matches + self.previous_matches if m.status == "finished"]
         return max(done, key=lambda m: (m.start, m.id)) if done else None
+
+
+@dataclass
+class WkData:
+    """Het WK: lopende (of komende) editie en de vorige."""
+
+    season: int
+    start: date | None
+    end: date | None
+    sessions: list[Session]
+    matches: list[Match]
+    previous_season: int
+    previous_sessions: list[Session]
+    previous_matches: list[Match]
+    error: str | None = None
+
+    def next_session(self, now: datetime) -> Session | None:
+        return next((s for s in self.sessions if s.end > now), None)
+
+    def next_match(self, now: datetime) -> Match | None:
+        return next(
+            (m for m in self.matches if m.status == "notstarted" and m.start > now), None
+        )
+
+    def last_match(self) -> Match | None:
+        done = [m for m in self.matches + self.previous_matches if m.status == "finished"]
+        return max(done, key=lambda m: (m.start, m.id)) if done else None
+
+    @staticmethod
+    def champion(matches: list[Match]) -> str | None:
+        final = [m for m in matches if m.round_name == "Final" and m.winner]
+        return final[0].winner if final else None
+
+    def is_active(self, today: date) -> bool:
+        return bool(self.start and self.end and self.start <= today <= self.end)
+
+    def remaining(self) -> list[str]:
+        return still_in(self.matches) if self.matches else []
 
 
 type DartsConfigEntry = ConfigEntry[DartsCoordinator]
@@ -79,6 +120,7 @@ class DartsCoordinator(DataUpdateCoordinator[DartsData]):
         self._sofa_blocked_until: datetime | None = None
         self._prev_cache: dict[str, tuple[int, list[Match]]] = {}
         self._warned: set[str] = set()
+        self._wk_prev: tuple[int, list[Match]] | None = None
 
     async def _from_sofascore(self, season: int) -> tuple[list[Match], list[Match]]:
         seasons = await self.sofa.seasons()
@@ -104,6 +146,41 @@ class DartsCoordinator(DataUpdateCoordinator[DartsData]):
             previous = await self.wiki.season_matches(prev_year)
             self._prev_cache[SOURCE_WIKIPEDIA] = (prev_year, previous)
         return current, previous
+
+    async def _fetch_wk(self) -> WkData:
+        today = dt_util.now().date()
+        season = wk_target_season(today)
+        prev = season - 1
+        error = None
+        matches: list[Match] = []
+        previous: list[Match] = []
+        try:
+            matches = await self.wiki.wk_matches(season)
+            if self._wk_prev and self._wk_prev[0] == prev:
+                previous = self._wk_prev[1]
+            else:
+                previous = await self.wiki.wk_matches(prev)
+                self._wk_prev = (prev, previous)
+        except DartsApiError as err:
+            error = str(err)
+            self._warn_once("wk", "WK-data niet beschikbaar: %s", err)
+            old = self.data.wk if self.data else None
+            if old and old.season == season:
+                matches, previous = old.matches, old.previous_matches
+        else:
+            self._warned.discard("wk")
+        start, end = wk_period(season, matches)
+        return WkData(
+            season=season,
+            start=start,
+            end=end,
+            sessions=build_sessions(season, matches),
+            matches=matches,
+            previous_season=prev,
+            previous_sessions=build_sessions(prev, previous),
+            previous_matches=previous,
+            error=error,
+        )
 
     def _warn_once(self, key: str, msg: str, *args) -> None:
         if key not in self._warned:
@@ -169,10 +246,15 @@ class DartsCoordinator(DataUpdateCoordinator[DartsData]):
             previous_nights=previous_nights,
             source=source,
             source_error="; ".join(errors) or None,
+            wk=await self._fetch_wk(),
         )
         interval = self._pick_interval(data, now)
         if source != SOURCE_SOFASCORE:
             interval = max(interval, SCAN_INTERVAL_WIKI_MIN)
+        if data.wk and data.wk.start and data.wk.end:
+            today = dt_util.now().date()
+            if data.wk.start - timedelta(days=1) <= today <= data.wk.end:
+                interval = min(interval, SCAN_INTERVAL_WK_ACTIVE)
         self.update_interval = interval
         return data
 

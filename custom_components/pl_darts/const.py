@@ -4,7 +4,7 @@ from __future__ import annotations
 from datetime import time, timedelta
 
 DOMAIN = "pl_darts"
-NAME = "Premier League Darts"
+NAME = "PDC Darts"
 
 # Bron voor wedstrijden, tijden en uitslagen (onofficiële SofaScore-API).
 # Twee adressen voor dezelfde API; de tweede is wat de website zelf gebruikt.
@@ -30,6 +30,8 @@ MAX_PAGES = 8
 # Reservebron: de Wikipedia-pagina van het seizoen (ruwe wikitekst).
 WIKI_URL = "https://en.wikipedia.org/w/index.php"
 WIKI_TITLE = "{year}_Premier_League_Darts"
+WIKI_TITLE_WK = "{year}_PDC_World_Darts_Championship"
+SCAN_INTERVAL_WK_ACTIVE = timedelta(minutes=5)
 WIKI_USER_AGENT = "ha-pl-darts/0.2 (https://github.com/Fliha/ha-pl-darts)"
 SOFASCORE_RETRY = timedelta(hours=6)  # na een blokkade even met rust laten
 SCAN_INTERVAL_WIKI_MIN = timedelta(minutes=5)
@@ -96,6 +98,10 @@ SCHEDULES: dict[int, list[tuple[int, str, str, str, str]]] = {
 }
 
 ROUND_NL = {
+    "Round 1": "Ronde 1",
+    "Round 2": "Ronde 2",
+    "Round 3": "Ronde 3",
+    "Round 4": "Ronde 4",
     "Quarterfinals": "Kwartfinale",
     "Semifinals": "Halve finale",
     "Final": "Finale",

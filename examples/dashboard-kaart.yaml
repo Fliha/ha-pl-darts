@@ -1,4 +1,4 @@
-# Premier League Darts – dashboardkaart
+# PDC Darts – dashboardkaart (Premier League + WK)
 # Dashboard bewerken → Kaart toevoegen → "Handmatig" → plak alles hieronder.
 # Gebruikt alleen standaardkaarten, er hoeft niets extra geïnstalleerd te worden.
 
@@ -48,7 +48,34 @@ cards:
       Nog geen stand beschikbaar.
       {% endif %}
 
+  - type: markdown
+    content: >-
+      {% set w = states.sensor.pl_darts_wk_status %}
+      {% set s = states.sensor.pl_darts_wk_next_session %}
+      ### 🏆 WK Darts {{ w.attributes.editie if w else '' }}
+      **{{ states('sensor.pl_darts_wk_status') }}**<br>
+      Alexandra Palace, Londen
+
+      {% if s and s.state not in ['unknown', 'unavailable'] %}
+      **Volgende sessie:** {{ as_timestamp(s.state) | timestamp_custom('%d-%m-%Y, %H:%M') }} uur
+      {% if s.attributes.programma_bekend %}
+      ({{ s.attributes.sessie }}, {{ s.attributes.rondes | join(', ') }})
+
+      | Partij | Stand |
+      |:--|:--|
+      {% for p in s.attributes.partijen -%}
+      | {{ p.speler_1 }} – {{ p.speler_2 }} | {{ p.stand or '–' }} |
+      {% endfor %}
+      {% else %}
+      _Het speelschema volgt eind november, na de loting._
+      {% endif %}
+      {% endif %}
+
+      **Laatste WK-uitslag:** {{ states('sensor.pl_darts_wk_last_result') }}
+      {% if w and w.attributes.vorige_kampioen %}<br>Vorige wereldkampioen: {{ w.attributes.vorige_kampioen }}{% endif %}
+
   - type: calendar
     entities:
       - calendar.pl_darts_calendar
+      - calendar.pl_darts_wk_calendar
     initial_view: listWeek

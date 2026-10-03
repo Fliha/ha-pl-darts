@@ -1,0 +1,73 @@
+==Schedule==
+The event consisted of 36 sessions held across 20 days from 11 December 2025 until the date of the final on Saturday, 3 January 2026. (Uittreksel uit Wikipedia, CC BY-SA 4.0.)
+
+{{hidden begin|expanded=yes|titlestyle=text-align:center;background:#FFFFFF; border-top:#CE1126 2px solid; border-bottom:#CE1126 2px solid;|title=Thursday, 11 December}}
+{| class="wikitable" style="text-align: center;"
+|+ '''Evening session (19:00 [[Greenwich Mean Time|GMT]])'''
+! width="2%" | Match no.
+! width="2%" | Round
+! width="15%" | Player 1
+! width="5%" | Score
+! width="15%" | Player 2
+|-
+|- style=text-align:center;
+| 01 || rowspan=4| 1 || [[Kim Huybrechts]] 86.24 || {{dart score|1|3}} || '''[[Arno Merk]]''' 89.73 || {{dart score|2|3}} || {{dart score|0|3}} || {{dart score|3|1}} || {{dart score|0|3}} || {{n/a}}
+|- style=text-align:center;
+| 02 || '''[[Michael Smith (darts player)|Michael Smith]]''' 91.19 || {{dart score|3|0}} || [[Lisa Ashton]] 77.13 || {{dart score|3|2}} || {{dart score|3|0}} || {{dart score|3|1}} || colspan=2{{n/a}}
+|- style=text-align:center;
+| 03 || '''[[Luke Littler]]''' 101.54 || {{dart score|3|0}} || [[Darius Labanauskas]] 95.25 || {{dart score|3|2}} || {{dart score|3|2}} || {{dart score|3|1}} || colspan=2{{n/a}}
+|- style=text-align:center;
+| 04 || '''[[Madars Razma]]''' 89.07 || {{dart score|3|1}} || [[Jamai van den Herik]] 81.33 || {{dart score|3|2}} || {{dart score|2|3}} || {{dart score|3|1}} || {{dart score|3|2}} || {{n/a}}
+|}{{hidden end}}
+
+{{hidden begin|expanded=yes|titlestyle=text-align:center;background:#FFFFFF; border-top:#CE1126 2px solid; border-bottom:#CE1126 2px solid;|title=Saturday, 20 December}}
+{| class="wikitable" style="text-align: center;"
+|+ '''Evening session (19:00 [[Greenwich Mean Time|GMT]])'''
+|- style=text-align:center;
+| 69 ||  rowspan=4| 2 || [[Michael Smith (darts player)|Michael Smith]] 97.93 || {{dart score|1|3}} || '''[[Niels Zonneveld]]''' 94.52 || {{dart score|1|3}} || {{dart score|3|1}} || {{dart score|2|3}} || {{dart score|0|3}} || colspan=1{{n/a}} 
+|- style=text-align:center;
+| 70 || [[Chris Dobey]] 94.92 || {{dart score|1|3}} || '''[[Andrew Gilding]]''' 99.01 || {{dart score|3|2}} || {{dart score|0|3}} || {{dart score|1|3}} || {{dart score|2|3}} || colspan=1{{n/a}} 
+|- style=text-align:center;
+| 71 || '''[[Stephen Bunting]]''' 94.11 || {{dart score|3|0}} || [[Nitin Kumar]] 75.18 || {{dart score|3|1}} || {{dart score|3|0}} || {{dart score|3|1}} || colspan=2{{n/a}} 
+|- style=text-align:center;
+| 72 || '''[[Jonny Clayton]]'''  || [[Walkover|w/o]]  || [[Dom Taylor]] ||  colspan=5{{n/a}}
+|}{{hidden end}}
+
+{{hidden begin|expanded=yes|titlestyle=text-align:center;background:#FFFFFF; border-top:#CE1126 2px solid; border-bottom:#CE1126 2px solid;|title=Sunday, 21 December}}
+{| class="wikitable" style="text-align: center;"
+|+ '''Evening session (19:00 [[Greenwich Mean Time|GMT]])'''
+|- style=text-align:center;
+| 79 || rowspan=1| 2 || '''[[Luke Littler]]''' 97.15 || {{dart score|3|0}}  || David Davies 95.53 || {{dart score|3|2}} || {{dart score|3|1}} || {{dart score|3|0}} || colspan=2{{n/a}}
+|}{{hidden end}}
+
+{{hidden begin|expanded=yes|titlestyle=text-align:center;background:#FFFFFF; border-top:#CE1126 2px solid; border-bottom:#CE1126 2px solid;|title=Thursday, 1 January}}
+{| class="wikitable" style="text-align: center;"
+|+ '''Afternoon session (12:30 [[Greenwich Mean Time|GMT]])'''
+|- style=text-align:center;
+| 121 || rowspan=2| QF || '''[[Ryan Searle (darts player)|Ryan Searle]]''' 91.32 || {{dart score|5|2}} || [[Jonny Clayton]] 93.67 || {{dart score|3|1}} || colspan=2{{n/a}}
+|- style=text-align:center;
+| 122 || '''[[Gary Anderson (darts player)|Gary Anderson]]''' 99.44 || {{dart score|5|2}} || [[Justin Hood (darts player)|Justin Hood]] 93.43 || {{dart score|3|0}} || colspan=2{{n/a}}
+|+ '''Evening session (19:00 [[Greenwich Mean Time|GMT]])'''
+|- style=text-align:center;
+| 123 || rowspan=2| QF || '''[[Luke Littler]]''' 100.04 || {{dart score|5|0}} || [[Krzysztof Ratajski]] 96.75 || {{dart score|3|2}} || colspan=4{{n/a}}
+|- style=text-align:center;
+| 124 || [[Luke Humphries]] 101.12 || {{dart score|1|5}} || '''[[Gian van Veen]]''' 105.41 || {{dart score|2|3}} || colspan=3{{n/a}}
+|}{{hidden end}}
+
+{{hidden begin|expanded=yes|titlestyle=text-align:center;background:#FFFFFF; border-top:#CE1126 2px solid; border-bottom:#CE1126 2px solid;|title=Friday, 2 January}}
+{| class="wikitable" style="text-align: center;"
+|+ '''Evening session (19:30 [[Greenwich Mean Time|GMT]])'''
+|- style=text-align:center;
+| 125 || rowspan=2| SF || '''[[Luke Littler]]''' 105.35 || {{dart score|6|1}} || [[Ryan Searle (darts player)|Ryan Searle]] 93.31 || {{dart score|2|3}} || colspan=4{{n/a}}
+|- style=text-align:center;
+| 126 || '''[[Gian van Veen]]''' 102.99 || {{dart score|6|3}} || [[Gary Anderson (darts player)|Gary Anderson]] 102.91 || {{dart score|1|3}} || colspan=2{{n/a}}
+|}{{hidden end}}
+
+{{hidden begin|expanded=yes|titlestyle=text-align:center;background:#FFFFFF; border-top:#CE1126 2px solid; border-bottom:#CE1126 2px solid;|title=Saturday, 3 January}}
+{| class="wikitable" style="text-align: center;"
+|+ '''Evening session (20:00 [[Greenwich Mean Time|GMT]])'''
+|- style=text-align:center;
+| 127 || F || '''[[Luke Littler]]''' 106.02 || {{dart score|7|1}} || [[Gian van Veen]] 99.94 || {{dart score|2|3}} || colspan=5{{n/a}}
+|}{{hidden end}}
+
+==Draw==

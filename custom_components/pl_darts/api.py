@@ -12,11 +12,13 @@ from .const import (
     MAX_PAGES,
     UNIQUE_TOURNAMENT_ID,
     WIKI_TITLE,
+    WIKI_TITLE_WK,
     WIKI_URL,
     WIKI_USER_AGENT,
 )
 from .model import Match, parse_event
 from .wiki import parse_wikitext
+from .wk import parse_wk_schedule
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -97,18 +99,27 @@ class WikipediaApi:
     def __init__(self, session: aiohttp.ClientSession) -> None:
         self._session = session
 
-    async def season_matches(self, year: int) -> list[Match]:
-        params = {"title": WIKI_TITLE.format(year=year), "action": "raw"}
+    async def _raw(self, title: str) -> str | None:
+        params = {"title": title, "action": "raw"}
         try:
             async with asyncio.timeout(20):
                 resp = await self._session.get(
                     WIKI_URL, params=params, headers={"User-Agent": WIKI_USER_AGENT}
                 )
                 if resp.status == 404:
-                    return []  # pagina bestaat (nog) niet
+                    return None  # pagina bestaat (nog) niet
                 if resp.status != 200:
                     raise DartsApiError(f"Wikipedia gaf HTTP {resp.status}")
-                text = await resp.text()
+                return await resp.text()
         except (aiohttp.ClientError, TimeoutError) as err:
             raise DartsApiError(f"Wikipedia niet bereikbaar: {err}") from err
-        return parse_wikitext(text, year)
+
+    async def season_matches(self, year: int) -> list[Match]:
+        """Premier League van een seizoen."""
+        text = await self._raw(WIKI_TITLE.format(year=year))
+        return parse_wikitext(text, year) if text else []
+
+    async def wk_matches(self, year: int) -> list[Match]:
+        """WK met de finale in dit jaar (dus december ervoor + januari)."""
+        text = await self._raw(WIKI_TITLE_WK.format(year=year))
+        return parse_wk_schedule(text, year) if text else []

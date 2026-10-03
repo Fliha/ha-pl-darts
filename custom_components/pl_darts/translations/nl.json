@@ -2,8 +2,8 @@
   "config": {
     "step": {
       "user": {
-        "title": "Premier League Darts",
-        "description": "Voegt het schema, de uitslagen en de stand van de PDC Premier League Darts toe. Er hoeft niets ingesteld te worden."
+        "title": "PDC Darts",
+        "description": "Voegt de PDC Premier League Darts en het WK darten toe: schema, partijen, uitslagen en stand. Er hoeft niets ingesteld te worden."
       }
     },
     "abort": {
@@ -13,6 +13,9 @@
   "entity": {
     "calendar": {
       "calendar": {
+        "name": "Agenda"
+      },
+      "wk_calendar": {
         "name": "Agenda"
       }
     },
@@ -31,6 +34,18 @@
       },
       "standings": {
         "name": "Stand"
+      },
+      "wk_status": {
+        "name": "Status"
+      },
+      "wk_next_session": {
+        "name": "Volgende sessie"
+      },
+      "wk_next_match": {
+        "name": "Volgende partij"
+      },
+      "wk_last_result": {
+        "name": "Laatste uitslag"
       }
     }
   }

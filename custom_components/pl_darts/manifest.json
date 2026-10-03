@@ -1,12 +1,14 @@
 {
   "domain": "pl_darts",
-  "name": "Premier League Darts",
-  "codeowners": ["@Fliha"],
+  "name": "PDC Darts",
+  "codeowners": [
+    "@Fliha"
+  ],
   "config_flow": true,
   "documentation": "https://github.com/Fliha/ha-pl-darts",
   "integration_type": "service",
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/Fliha/ha-pl-darts/issues",
   "requirements": [],
-  "version": "0.2.0"
+  "version": "0.3.0"
 }

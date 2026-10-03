@@ -1,10 +1,12 @@
 <img src="custom_components/pl_darts/brand/icon.png" width="96" align="right" alt="">
 
-# 🎯 Premier League Darts voor Home Assistant
+# 🎯 PDC Darts voor Home Assistant
 
-Zie in Home Assistant **wanneer, waar, hoe laat en wie** er speelt in de PDC Premier League Darts, met live stand per partij en de ranglijst.
+Zie in Home Assistant **wanneer, waar, hoe laat en wie** er speelt in de **PDC Premier League Darts** en op het **WK darten** in Alexandra Palace, met uitslagen en de ranglijst.
 
 ## Wat je krijgt
+
+### Premier League (apparaat "Premier League Darts")
 
 | Entiteit | Wat het laat zien |
 |---|---|
@@ -15,14 +17,26 @@ Zie in Home Assistant **wanneer, waar, hoe laat en wie** er speelt in de PDC Pre
 | `sensor.pl_darts_last_result` | Laatst gespeelde partij met uitslag |
 | `sensor.pl_darts_standings` | Koploper; de hele ranglijst staat in het attribuut `stand` |
 
+### WK darten (apparaat "WK Darts")
+
+| Entiteit | Wat het laat zien |
+|---|---|
+| `calendar.pl_darts_wk_calendar` | Elke sessie (middag/avond) met de partijen, en elke partij apart |
+| `sensor.pl_darts_wk_status` | Bijv. *Begint 11 december*, *Bezig: Ronde 3* of *Wereldkampioen: …*; met wie er nog in zit |
+| `sensor.pl_darts_wk_next_session` | Begintijd van de volgende sessie, met rondes en partijen |
+| `sensor.pl_darts_wk_next_match` | Begintijd van de volgende WK-partij |
+| `sensor.pl_darts_wk_last_result` | Laatst gespeelde WK-partij met uitslag (in sets) |
+
+Het WK-schema komt van Wikipedia. De begintijd van elke sessie is exact; voor de partijen daarna in dezelfde sessie wordt de tijd geschat.
+
 Tussen seizoenen (zoals nu) staan de 17 speelavonden van het nieuwe seizoen al in de agenda, samen met alle avonden en uitslagen van vorig seizoen. De stand toont dan de eindstand van vorig jaar.
 
 ## Installeren via HACS
 
 1. HACS → rechtsboven ⋮ → **Custom repositories**
 2. URL van deze repository, categorie **Integration** → Add
-3. Zoek **Premier League Darts** → Download → herstart Home Assistant
-4. **Instellingen → Apparaten & diensten → Integratie toevoegen → Premier League Darts**
+3. Zoek **PDC Darts** → Download → herstart Home Assistant
+4. **Instellingen → Apparaten & diensten → Integratie toevoegen → PDC Darts**
 
 Er hoeft niets ingesteld te worden. Het eigen icoon verschijnt vanaf Home Assistant 2026.3.
 

@@ -155,3 +155,62 @@ def test_wikipedia_draw_known_but_not_played():
     assert m.status == "notstarted" and m.winner is None
     assert m.estimated_time
     assert m.start == datetime(2027, 2, 4, 19, 0, tzinfo=timezone.utc)
+
+
+# --- WK -------------------------------------------------------------------
+from pl_darts.wk import build_sessions, parse_wk_schedule, still_in, wk_period, wk_target_season
+
+WK_2026 = (Path(__file__).parent / "fixtures" / "wikipedia_wk_2026.txt").read_text()
+
+
+def test_wk_schedule_parsing():
+    ms = parse_wk_schedule(WK_2026, 2026)
+    assert len(ms) == 16
+    first = ms[0]
+    assert (first.home, first.away, first.winner) == ("Kim Huybrechts", "Arno Merk", "Arno Merk")
+    assert first.round_nl == "Ronde 1" and first.session_name == "Avondsessie"
+    # december hoort bij het jaar vóór de finale
+    assert first.start == datetime(2025, 12, 11, 19, 0, tzinfo=timezone.utc)
+    assert not first.estimated_time and ms[1].estimated_time
+    # [[Link|Naam]] en namen zonder link
+    names = {m.home for m in ms} | {m.away for m in ms}
+    assert "Ryan Searle" in names and "David Davies" in names and "Michael Smith" in names
+    final = ms[-1]
+    assert final.round_name == "Final" and final.title == "Luke Littler 7–1 Gian van Veen"
+    assert final.start == datetime(2026, 1, 3, 20, 0, tzinfo=timezone.utc)
+
+
+def test_wk_walkover_and_sessions():
+    ms = parse_wk_schedule(WK_2026, 2026)
+    wo = [m for m in ms if m.walkover][0]
+    assert wo.winner == "Jonny Clayton" and wo.status == "finished"
+    sessions = build_sessions(2026, ms)
+    assert len(sessions) == 7
+    jan1 = [s for s in sessions if s.start.date().isoformat() == "2026-01-01"]
+    assert [s.name for s in jan1] == ["Middagsessie", "Avondsessie"]
+    assert jan1[0].rounds == ["Kwartfinale"]
+
+
+def test_wk_dates_and_remaining():
+    assert wk_target_season(date(2026, 10, 3)) == 2027
+    assert wk_target_season(date(2027, 1, 2)) == 2027
+    assert wk_target_season(date(2027, 2, 1)) == 2028
+    assert wk_period(2027, []) == (date(2026, 12, 11), date(2027, 1, 3))
+    ms = parse_wk_schedule(WK_2026, 2026)
+    remaining = still_in(ms)
+    assert "Luke Littler" in remaining
+    assert "Gian van Veen" not in remaining and "Kim Huybrechts" not in remaining
+
+
+def test_wk_unknown_players_skipped_and_unplayed():
+    text = """==Schedule==
+{{hidden begin|title=Friday, 11 December}}
+|+ '''Evening session (19:00 [[Greenwich Mean Time|GMT]])'''
+| 01 || rowspan=4| 1 || [[Luke Littler]] || v || [[Some Qualifier]] ||
+| 02 || TBD || v || TBD ||
+==Draw==
+"""
+    ms = parse_wk_schedule(text, 2027)
+    assert len(ms) == 1
+    assert ms[0].status == "notstarted" and ms[0].winner is None
+    assert ms[0].start == datetime(2026, 12, 11, 19, 0, tzinfo=timezone.utc)

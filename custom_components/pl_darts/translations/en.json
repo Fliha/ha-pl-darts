@@ -2,8 +2,8 @@
   "config": {
     "step": {
       "user": {
-        "title": "Premier League Darts",
-        "description": "Adds the PDC Premier League Darts schedule, results and standings. No settings needed."
+        "title": "PDC Darts",
+        "description": "Adds the PDC Premier League Darts and World Darts Championship: schedule, matches, results and standings. No settings needed."
       }
     },
     "abort": {
@@ -13,6 +13,9 @@
   "entity": {
     "calendar": {
       "calendar": {
+        "name": "Calendar"
+      },
+      "wk_calendar": {
         "name": "Calendar"
       }
     },
@@ -31,6 +34,18 @@
       },
       "standings": {
         "name": "Standings"
+      },
+      "wk_status": {
+        "name": "Status"
+      },
+      "wk_next_session": {
+        "name": "Next session"
+      },
+      "wk_next_match": {
+        "name": "Next match"
+      },
+      "wk_last_result": {
+        "name": "Last result"
       }
     }
   }

@@ -78,6 +78,9 @@ class Match:
     night: Night | None = None
     estimated_time: bool = False
     walkover: bool = False
+    competition: str = "pl"
+    session_start: datetime | None = None
+    session_name: str = ""
 
     @property
     def round_nl(self) -> str:
@@ -112,9 +115,12 @@ class Match:
             "status": self.status,
             "winnaar": self.winner,
             "avond": night.title if night else None,
-            "stad": night.city if night else None,
-            "zaal": night.venue if night else None,
+            "stad": night.city if night else ("Londen" if self.competition == "wk" else None),
+            "zaal": night.venue if night else (
+                "Alexandra Palace" if self.competition == "wk" else None
+            ),
             "tijd_geschat": self.estimated_time,
+            "sessie": self.session_name or None,
         }
 
 

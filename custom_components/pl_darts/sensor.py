@@ -13,6 +13,8 @@ from homeassistant.components.sensor import (
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.util import dt as dt_util
+from datetime import datetime, time
+from zoneinfo import ZoneInfo
 
 from .coordinator import DartsConfigEntry, DartsCoordinator, DartsData
 from .entity import DartsEntity
@@ -75,10 +77,84 @@ def _standings_attrs(d: DartsData) -> dict[str, Any]:
     }
 
 
+# ---- WK ---------------------------------------------------------------
+
+def _wk_status(d: DartsData) -> str | None:
+    wk = d.wk
+    if wk is None:
+        return None
+    today = dt_util.now().date()
+    champ = wk.champion(wk.matches)
+    if champ:
+        return f"Wereldkampioen: {champ}"
+    if wk.is_active(today):
+        last = next((m for m in reversed(wk.matches) if m.status == "finished"), None)
+        return f"Bezig: {last.round_nl}" if last else "Bezig"
+    if wk.start and today < wk.start:
+        return f"Begint {wk.start.day} {_MONTHS[wk.start.month]}"
+    return "Afgelopen"
+
+
+_MONTHS = ["", "januari", "februari", "maart", "april", "mei", "juni", "juli",
+           "augustus", "september", "oktober", "november", "december"]
+
+
+def _wk_status_attrs(d: DartsData) -> dict[str, Any]:
+    wk = d.wk
+    if wk is None:
+        return {}
+    played = [m for m in wk.matches if m.status == "finished"]
+    return {
+        "editie": f"{wk.season - 1}/{str(wk.season)[-2:]}",
+        "start": wk.start.isoformat() if wk.start else None,
+        "finale": wk.end.isoformat() if wk.end else None,
+        "zaal": "Alexandra Palace",
+        "stad": "Londen",
+        "programma_bekend": bool(wk.matches),
+        "partijen_gespeeld": len(played),
+        "partijen_totaal": len(wk.matches),
+        "nog_in_toernooi": wk.remaining() if played else [],
+        "kampioen": wk.champion(wk.matches),
+        "vorige_kampioen": wk.champion(wk.previous_matches),
+        "bron_fout": wk.error,
+    }
+
+
+def _wk_next_session_value(d: DartsData):
+    wk = d.wk
+    if wk is None:
+        return None
+    s = wk.next_session(dt_util.utcnow())
+    if s:
+        return s.start
+    if wk.start and not wk.sessions and dt_util.now().date() <= wk.start:
+        # Schema nog niet bekend: eerste avond begint traditioneel om 19:00 Britse tijd.
+        return dt_util.as_utc(
+            datetime.combine(wk.start, time(19, 0), tzinfo=ZoneInfo("Europe/London"))
+        )
+    return None
+
+
+def _wk_next_session_attrs(d: DartsData) -> dict[str, Any]:
+    wk = d.wk
+    if wk is None:
+        return {}
+    s = wk.next_session(dt_util.utcnow())
+    if not s:
+        return {"programma_bekend": False, "tijd_geschat": True}
+    return {
+        "programma_bekend": True,
+        "sessie": s.name,
+        "rondes": s.rounds,
+        "partijen": [m.as_dict() for m in s.matches],
+    }
+
+
 @dataclass(frozen=True, kw_only=True)
 class DartsSensorDescription(SensorEntityDescription):
     value_fn: Callable[[DartsData], Any]
     attrs_fn: Callable[[DartsData], dict[str, Any]]
+    device: str = "pl"
 
 
 SENSORS: tuple[DartsSensorDescription, ...] = (
@@ -114,6 +190,36 @@ SENSORS: tuple[DartsSensorDescription, ...] = (
         value_fn=_leader_value,
         attrs_fn=_standings_attrs,
     ),
+    DartsSensorDescription(
+        key="wk_status",
+        icon="mdi:trophy-variant",
+        device="wk",
+        value_fn=_wk_status,
+        attrs_fn=_wk_status_attrs,
+    ),
+    DartsSensorDescription(
+        key="wk_next_session",
+        icon="mdi:calendar-star",
+        device_class=SensorDeviceClass.TIMESTAMP,
+        device="wk",
+        value_fn=_wk_next_session_value,
+        attrs_fn=_wk_next_session_attrs,
+    ),
+    DartsSensorDescription(
+        key="wk_next_match",
+        icon="mdi:bullseye-arrow",
+        device_class=SensorDeviceClass.TIMESTAMP,
+        device="wk",
+        value_fn=lambda d: (m.start if d.wk and (m := d.wk.next_match(dt_util.utcnow())) else None),
+        attrs_fn=lambda d: _match_attrs(d.wk.next_match(dt_util.utcnow())) if d.wk else {},
+    ),
+    DartsSensorDescription(
+        key="wk_last_result",
+        icon="mdi:scoreboard",
+        device="wk",
+        value_fn=lambda d: (m.title if d.wk and (m := d.wk.last_match()) else None),
+        attrs_fn=lambda d: _match_attrs(d.wk.last_match()) if d.wk else {},
+    ),
 )
 
 
@@ -130,7 +236,7 @@ class DartsSensor(DartsEntity, SensorEntity):
     entity_description: DartsSensorDescription
 
     def __init__(self, coordinator: DartsCoordinator, desc: DartsSensorDescription) -> None:
-        super().__init__(coordinator, desc.key, "sensor")
+        super().__init__(coordinator, desc.key, "sensor", device=desc.device)
         self.entity_description = desc
 
     @property

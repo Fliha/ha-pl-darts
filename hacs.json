@@ -1,6 +1,12 @@
 {
-  "name": "Premier League Darts",
+  "name": "PDC Darts",
   "homeassistant": "2025.1.0",
   "render_readme": true,
-  "country": ["NL", "BE", "GB", "DE", "IE"]
+  "country": [
+    "NL",
+    "BE",
+    "GB",
+    "DE",
+    "IE"
+  ]
 }
