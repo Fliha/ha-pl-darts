@@ -6,7 +6,7 @@ import logging
 
 import aiohttp
 
-from .const import API_BASE, MAX_PAGES, UNIQUE_TOURNAMENT_ID, USER_AGENT
+from .const import API_BASES, HEADERS, MAX_PAGES, UNIQUE_TOURNAMENT_ID
 from .model import Match, parse_event
 
 _LOGGER = logging.getLogger(__name__)
@@ -21,22 +21,31 @@ class DartsApi:
 
     def __init__(self, session: aiohttp.ClientSession) -> None:
         self._session = session
+        self._base = API_BASES[0]
 
-    async def _get(self, path: str) -> dict | None:
-        url = f"{API_BASE}{path}"
+    async def _get_from(self, base: str, path: str) -> tuple[int, dict | None]:
+        url = f"{base}{path}"
         try:
             async with asyncio.timeout(20):
-                resp = await self._session.get(
-                    url,
-                    headers={"User-Agent": USER_AGENT, "Accept": "application/json"},
-                )
-                if resp.status == 404:
-                    return None  # bv. nog geen komende wedstrijden
+                resp = await self._session.get(url, headers=HEADERS)
                 if resp.status != 200:
-                    raise DartsApiError(f"{url} gaf HTTP {resp.status}")
-                return await resp.json(content_type=None)
-        except (aiohttp.ClientError, TimeoutError) as err:
+                    return resp.status, None
+                return 200, await resp.json(content_type=None)
+        except (aiohttp.ClientError, TimeoutError, ValueError) as err:
             raise DartsApiError(f"{url} niet bereikbaar: {err}") from err
+
+    async def _get(self, path: str) -> dict | None:
+        """Probeer het werkende adres eerst, daarna het andere."""
+        tried: list[str] = []
+        for base in (self._base, *(b for b in API_BASES if b != self._base)):
+            status, data = await self._get_from(base, path)
+            if status == 200:
+                self._base = base
+                return data
+            if status == 404:
+                return None  # bv. nog geen komende wedstrijden
+            tried.append(f"{base} gaf HTTP {status}")
+        raise DartsApiError("; ".join(tried))
 
     async def seasons(self) -> dict[int, int]:
         """Geef {jaar: seizoen_id}."""

@@ -7,12 +7,24 @@ DOMAIN = "pl_darts"
 NAME = "Premier League Darts"
 
 # Bron voor wedstrijden, tijden en uitslagen (onofficiële SofaScore-API).
-API_BASE = "https://api.sofascore.com/api/v1"
+# Twee adressen voor dezelfde API; de tweede is wat de website zelf gebruikt.
+API_BASES = (
+    "https://www.sofascore.com/api/v1",
+    "https://api.sofascore.com/api/v1",
+)
 UNIQUE_TOURNAMENT_ID = 11565  # "Premier League Darts" bij SofaScore
 USER_AGENT = (
-    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
-    "(KHTML, like Gecko) Chrome/128.0 Safari/537.36"
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
 )
+HEADERS = {
+    "User-Agent": USER_AGENT,
+    "Accept": "application/json, text/plain, */*",
+    "Accept-Language": "nl-NL,nl;q=0.9,en;q=0.8",
+    "Referer": "https://www.sofascore.com/",
+    "Origin": "https://www.sofascore.com",
+    "Cache-Control": "no-cache",
+}
 MAX_PAGES = 8
 
 # Ververs-interval: rustig als er niks gebeurt, snel tijdens een speelavond.

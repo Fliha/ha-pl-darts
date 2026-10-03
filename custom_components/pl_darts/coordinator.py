@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from homeassistant.util import dt as dt_util
 
 from .api import DartsApi, DartsApiError
@@ -33,6 +33,7 @@ class DartsData:
     standings: list[dict]
     standings_season: int | None
     previous_matches: list[Match] = field(default_factory=list)
+    source_error: str | None = None
 
     def next_night(self, now: datetime) -> Night | None:
         return next((n for n in self.nights if n.end > now), None)
@@ -67,17 +68,18 @@ class DartsCoordinator(DataUpdateCoordinator[DartsData]):
         )
         self.api = DartsApi(async_get_clientsession(hass))
         self._prev_cache: tuple[int, list[Match]] | None = None
+        self._warned = False
 
     async def _async_update_data(self) -> DartsData:
         now = dt_util.utcnow()
         season = target_season(dt_util.now().date())
+        source_error: str | None = None
+        matches: list[Match] = []
+        previous: list[Match] = []
         try:
             seasons = await self.api.seasons()
-            matches: list[Match] = []
             if season in seasons:
                 matches = await self.api.season_matches(seasons[season])
-
-            previous: list[Match] = []
             older = [y for y in seasons if y < season]
             if older:
                 prev_year = max(older)
@@ -87,7 +89,22 @@ class DartsCoordinator(DataUpdateCoordinator[DartsData]):
                     previous = await self.api.season_matches(seasons[prev_year])
                     self._prev_cache = (prev_year, previous)
         except DartsApiError as err:
-            raise UpdateFailed(str(err)) from err
+            # Bron niet bereikbaar: val terug op wat we al hadden, of alleen het
+            # vaste schema. De integratie blijft dan gewoon werken.
+            source_error = str(err)
+            if not self._warned:
+                _LOGGER.warning("Wedstrijddata niet beschikbaar, alleen schema: %s", err)
+                self._warned = True
+            old = self.data
+            if old and old.season == season:
+                matches = old.matches
+                previous = old.previous_matches
+            elif self._prev_cache:
+                previous = self._prev_cache[1]
+        else:
+            if self._warned:
+                _LOGGER.info("Wedstrijddata weer beschikbaar")
+            self._warned = False
 
         nights = build_nights(season, matches)
         standings = compute_standings(matches)
@@ -99,8 +116,13 @@ class DartsCoordinator(DataUpdateCoordinator[DartsData]):
         if not standings:
             standings_season = None
 
-        data = DartsData(season, nights, matches, standings, standings_season, previous)
-        self.update_interval = self._pick_interval(data, now)
+        data = DartsData(
+            season, nights, matches, standings, standings_season, previous, source_error
+        )
+        interval = self._pick_interval(data, now)
+        if source_error:
+            interval = max(interval, timedelta(minutes=15))  # bron niet bestoken
+        self.update_interval = interval
         return data
 
     @staticmethod
