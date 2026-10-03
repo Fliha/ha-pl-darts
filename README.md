@@ -1,3 +1,5 @@
+<img src="custom_components/pl_darts/brand/icon.png" width="96" align="right" alt="">
+
 # 🎯 Premier League Darts voor Home Assistant
 
 Zie in Home Assistant **wanneer, waar, hoe laat en wie** er speelt in de PDC Premier League Darts, met live stand per partij en de ranglijst.
@@ -22,7 +24,7 @@ Tussen seizoenen (zoals nu) staan de 17 speelavonden van het nieuwe seizoen al i
 3. Zoek **Premier League Darts** → Download → herstart Home Assistant
 4. **Instellingen → Apparaten & diensten → Integratie toevoegen → Premier League Darts**
 
-Er hoeft niets ingesteld te worden.
+Er hoeft niets ingesteld te worden. Het eigen icoon verschijnt vanaf Home Assistant 2026.3.
 
 ## Dashboard
 
