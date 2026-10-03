@@ -1,0 +1,52 @@
+# Premier League Darts – dashboardkaart
+# Dashboard bewerken → Kaart toevoegen → "Handmatig" → plak alles hieronder.
+# Gebruikt alleen standaardkaarten, er hoeft niets extra geïnstalleerd te worden.
+
+type: vertical-stack
+cards:
+  - type: markdown
+    title: 🎯 Premier League Darts
+    content: >-
+      {% set n = states.sensor.pl_darts_next_night %}
+      {% set live = states('sensor.pl_darts_live_match') %}
+      {% if live not in ['Geen', 'unknown', 'unavailable'] %}
+      ### 🔴 Nu live: {{ live }}
+      {% endif %}
+      {% if n and n.state not in ['unknown', 'unavailable'] %}
+      **{{ n.attributes.avond }} – {{ n.attributes.stad }}**
+      {{ n.attributes.zaal }}<br>
+      {{ as_timestamp(n.state) | timestamp_custom('%d-%m-%Y, %H:%M') }} uur
+
+      {% if n.attributes.indeling_bekend %}
+      | Tijd | Ronde | Partij |
+      |:--|:--|:--|
+      {% for p in n.attributes.partijen -%}
+      | {{ as_timestamp(p.start) | timestamp_custom('%H:%M') }} | {{ p.ronde }} | {{ p.speler_1 }} {{ p.stand or '–' }} {{ p.speler_2 }} |
+      {% endfor %}
+      {% else %}
+      _Wie tegen wie speelt wordt een paar dagen vooraf bekend._
+      {% endif %}
+      {% else %}
+      Geen speelavond meer gepland dit seizoen.
+      {% endif %}
+
+      **Laatste uitslag:** {{ states('sensor.pl_darts_last_result') }}
+
+  - type: markdown
+    content: >-
+      {% set s = states.sensor.pl_darts_standings %}
+      {% if s and s.attributes.stand %}
+      ### 🏆 Stand {{ s.attributes.seizoen }}{{ ' (eindstand)' if not s.attributes.voorlopig }}
+      | # | Speler | Ptn | Avonden | Legs |
+      |--:|:--|--:|--:|--:|
+      {% for r in s.attributes.stand -%}
+      | {{ r.positie }} | {{ r.naam }} | **{{ r.punten }}** | {{ r.avonden_gewonnen }} | {{ '%+d' % r.legsaldo }} |
+      {% endfor %}
+      {% else %}
+      Nog geen stand beschikbaar.
+      {% endif %}
+
+  - type: calendar
+    entities:
+      - calendar.pl_darts_calendar
+    initial_view: listWeek

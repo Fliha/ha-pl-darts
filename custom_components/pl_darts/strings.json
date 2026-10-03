@@ -1,0 +1,37 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Premier League Darts",
+        "description": "Adds the PDC Premier League Darts schedule, results and standings. No settings needed."
+      }
+    },
+    "abort": {
+      "already_configured": "Premier League Darts is already set up."
+    }
+  },
+  "entity": {
+    "calendar": {
+      "calendar": {
+        "name": "Calendar"
+      }
+    },
+    "sensor": {
+      "next_night": {
+        "name": "Next night"
+      },
+      "next_match": {
+        "name": "Next match"
+      },
+      "live_match": {
+        "name": "Live match"
+      },
+      "last_result": {
+        "name": "Last result"
+      },
+      "standings": {
+        "name": "Standings"
+      }
+    }
+  }
+}

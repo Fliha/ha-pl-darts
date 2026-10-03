@@ -1,0 +1,37 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Premier League Darts",
+        "description": "Voegt het schema, de uitslagen en de stand van de PDC Premier League Darts toe. Er hoeft niets ingesteld te worden."
+      }
+    },
+    "abort": {
+      "already_configured": "Premier League Darts is al toegevoegd."
+    }
+  },
+  "entity": {
+    "calendar": {
+      "calendar": {
+        "name": "Agenda"
+      }
+    },
+    "sensor": {
+      "next_night": {
+        "name": "Volgende speelavond"
+      },
+      "next_match": {
+        "name": "Volgende partij"
+      },
+      "live_match": {
+        "name": "Live partij"
+      },
+      "last_result": {
+        "name": "Laatste uitslag"
+      },
+      "standings": {
+        "name": "Stand"
+      }
+    }
+  }
+}
