@@ -1,5 +1,5 @@
 # Melding een half uur voordat de speelavond begint.
-# Vervang notify.mobile_app_telefoon_annuska door de juiste telefoon.
+# Vervang notify.mobile_app_jouw_telefoon door de juiste telefoon.
 alias: "Darts: speelavond begint zo"
 mode: single
 triggers:
@@ -11,7 +11,7 @@ conditions:
   - condition: template
     value_template: "{{ trigger.calendar_event.summary.startswith('Premier League Darts') }}"
 actions:
-  - action: notify.mobile_app_telefoon_annuska
+  - action: notify.mobile_app_jouw_telefoon
     data:
       title: "🎯 Darts over een half uur"
       message: "{{ trigger.calendar_event.summary }} – {{ trigger.calendar_event.location }}"
