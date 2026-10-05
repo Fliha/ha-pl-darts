@@ -18,6 +18,8 @@ jobs:
       - uses: hacs/action@main
         with:
           category: integration
+          # Topics zijn alleen nodig voor de officiële HACS-lijst; voorlopig niet.
+          ignore: topics
   tests:
     runs-on: ubuntu-latest
     steps:
